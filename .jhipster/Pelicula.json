@@ -1,0 +1,48 @@
+{
+  "fields": [
+    {
+      "fieldName": "titulo",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength"],
+      "fieldValidateRulesMinlength": "4",
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "fechaEstreno",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "decripcion",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength"],
+      "fieldValidateRulesMinlength": "20",
+      "fieldValidateRulesMaxlength": "500"
+    },
+    {
+      "fieldName": "enCines",
+      "fieldType": "Boolean"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipName": "estreno",
+      "otherEntityName": "estreno",
+      "relationshipType": "one-to-one",
+      "ownerSide": false,
+      "otherEntityRelationshipName": "pelicula"
+    },
+    {
+      "relationshipName": "director",
+      "otherEntityName": "director",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "nombre"
+    }
+  ],
+  "service": "serviceClass",
+  "dto": "no",
+  "jpaMetamodelFiltering": false,
+  "readOnly": false,
+  "pagination": "pagination",
+  "name": "Pelicula",
+  "changelogDate": "20211010165759"
+}

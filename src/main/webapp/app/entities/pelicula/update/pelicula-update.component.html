@@ -1,0 +1,99 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-pelicula-heading" data-cy="PeliculaCreateUpdateHeading">Create or edit a Pelicula</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_titulo">Titulo</label>
+          <input type="text" class="form-control" name="titulo" id="field_titulo" data-cy="titulo" formControlName="titulo" />
+          <div *ngIf="editForm.get('titulo')!.invalid && (editForm.get('titulo')!.dirty || editForm.get('titulo')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('titulo')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('titulo')?.errors?.minlength">
+              This field is required to be at least 4 characters.
+            </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('titulo')?.errors?.maxlength">
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_fechaEstreno">Fecha Estreno</label>
+          <div class="d-flex">
+            <input
+              id="field_fechaEstreno"
+              data-cy="fechaEstreno"
+              type="datetime-local"
+              class="form-control"
+              name="fechaEstreno"
+              formControlName="fechaEstreno"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_decripcion">Decripcion</label>
+          <input
+            type="text"
+            class="form-control"
+            name="decripcion"
+            id="field_decripcion"
+            data-cy="decripcion"
+            formControlName="decripcion"
+          />
+          <div *ngIf="editForm.get('decripcion')!.invalid && (editForm.get('decripcion')!.dirty || editForm.get('decripcion')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('decripcion')?.errors?.minlength">
+              This field is required to be at least 20 characters.
+            </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('decripcion')?.errors?.maxlength">
+              This field cannot be longer than 500 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_enCines">En Cines</label>
+          <input type="checkbox" class="form-check" name="enCines" id="field_enCines" data-cy="enCines" formControlName="enCines" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_director">Director</label>
+          <select class="form-control" id="field_director" data-cy="director" name="director" formControlName="director">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="directorOption.id === editForm.get('director')!.value?.id ? editForm.get('director')!.value : directorOption"
+              *ngFor="let directorOption of directorsSharedCollection; trackBy: trackDirectorById"
+            >
+              {{ directorOption.nombre }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

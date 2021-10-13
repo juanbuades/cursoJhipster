@@ -1,0 +1,31 @@
+{
+  "fields": [
+    {
+      "fieldName": "nombre",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength"],
+      "fieldValidateRulesMinlength": "3",
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "apellidos",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength"],
+      "fieldValidateRulesMinlength": "3",
+      "fieldValidateRulesMaxlength": "70"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipName": "pelicula",
+      "otherEntityName": "pelicula",
+      "relationshipType": "one-to-many",
+      "otherEntityRelationshipName": "director"
+    }
+  ],
+  "service": "no",
+  "readOnly": false,
+  "pagination": "pagination",
+  "name": "Director",
+  "changelogDate": "20211011163702"
+}

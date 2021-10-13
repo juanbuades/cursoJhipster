@@ -45,7 +45,7 @@
     "clientPackageManager": "npm",
     "enableGradleEnterprise": false,
     "languages": ["en", "fr"],
-    "lastLiquibaseTimestamp": 1633801930000,
-    "entities": ["Categoria"]
+    "lastLiquibaseTimestamp": 1633970222000,
+    "entities": ["Categoria", "Pelicula", "Estreno", "Director"]
   }
 }

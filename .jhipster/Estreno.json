@@ -1,0 +1,32 @@
+{
+  "fields": [
+    {
+      "fieldName": "fecha",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lugar",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength"],
+      "fieldValidateRulesMinlength": "4",
+      "fieldValidateRulesMaxlength": "150"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipName": "pelicula",
+      "otherEntityName": "pelicula",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": [],
+      "otherEntityField": "titulo",
+      "ownerSide": true,
+      "id": false,
+      "otherEntityRelationshipName": "estreno"
+    }
+  ],
+  "service": "no",
+  "readOnly": false,
+  "pagination": "pagination",
+  "name": "Estreno",
+  "changelogDate": "20211011162127"
+}

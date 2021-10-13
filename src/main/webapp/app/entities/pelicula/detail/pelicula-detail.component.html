@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="pelicula">
+      <h2 data-cy="peliculaDetailsHeading"><span>Pelicula</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ pelicula.id }}</span>
+        </dd>
+        <dt><span>Titulo</span></dt>
+        <dd>
+          <span>{{ pelicula.titulo }}</span>
+        </dd>
+        <dt><span>Fecha Estreno</span></dt>
+        <dd>
+          <span>{{ pelicula.fechaEstreno | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Decripcion</span></dt>
+        <dd>
+          <span>{{ pelicula.decripcion }}</span>
+        </dd>
+        <dt><span>En Cines</span></dt>
+        <dd>
+          <span>{{ pelicula.enCines }}</span>
+        </dd>
+        <dt><span>Director</span></dt>
+        <dd>
+          <div *ngIf="pelicula.director">
+            <a [routerLink]="['/director', pelicula.director?.id, 'view']">{{ pelicula.director?.nombre }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/pelicula', pelicula.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
